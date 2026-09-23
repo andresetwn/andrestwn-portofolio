@@ -1,5 +1,13 @@
-import { Sparkles, ArrowRight, Mail, Linkedin, Globe, MapPin } from "lucide-react";
-import { profile } from "@/data/profile";
+import {
+  Sparkles,
+  ArrowRight,
+  Mail,
+  Linkedin,
+  Github,
+  Globe,
+  MapPin,
+} from "lucide-react";
+import { profile, gmailCompose } from "@/data/profile";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Reveal } from "@/components/motion/MotionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -9,7 +17,7 @@ export function Contact() {
     {
       label: "Email",
       value: profile.email,
-      href: `mailto:${profile.email}`,
+      href: gmailCompose,
       icon: Mail,
     },
     {
@@ -19,16 +27,16 @@ export function Contact() {
       icon: Linkedin,
     },
     {
+      label: "GitHub",
+      value: "andresetwn",
+      href: profile.github,
+      icon: Github,
+    },
+    {
       label: "Portfolio",
       value: "PortoDataAnalisisAndre",
       href: profile.portfolio,
       icon: Globe,
-    },
-    {
-      label: "Location",
-      value: profile.location,
-      href: undefined,
-      icon: MapPin,
     },
   ];
 
@@ -53,11 +61,16 @@ export function Contact() {
             </h3>
 
             <p className="max-w-lg text-sm leading-relaxed text-slate-400 sm:text-base">
-              Whether it&rsquo;s data analysis, visualization, or a web project —
-              feel free to reach out through any of the channels below.
+              Whether it&rsquo;s data analysis, visualization, or a web project
+              — feel free to reach out through any of the channels below.
             </p>
 
-            <a href={`mailto:${profile.email}`} className="btn-primary group">
+            <a
+              href={gmailCompose}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary group"
+            >
               <Mail className="h-4 w-4" />
               {profile.email}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -89,7 +102,9 @@ export function Contact() {
                   href={link.href}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={
-                    link.href.startsWith("http") ? "noopener noreferrer" : undefined
+                    link.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
                   }
                   className="group"
                 >

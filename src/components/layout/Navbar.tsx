@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
-import { navLinks, profile } from "@/data/profile";
+import { navLinks, profile, gmailCompose } from "@/data/profile";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -193,7 +193,9 @@ export function Navbar() {
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 pb-4 pt-1 text-xs text-slate-500">
                 <a
-                  href={`mailto:${profile.email}`}
+                  href={gmailCompose}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="transition-colors hover:text-cyan-300"
                 >
                   {profile.email}

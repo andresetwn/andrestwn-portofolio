@@ -21,9 +21,8 @@ export function Experience() {
     <SectionWrapper id="experience">
       <SectionHeading
         eyebrow="Experience"
-        title="Professional"
-        highlight="journey"
-        intro="Hands-on roles across software development, laboratory assistance, and student organization work."
+        title="My"
+        highlight="Experience"
       />
 
       <div className="mx-auto mt-12 max-w-3xl">

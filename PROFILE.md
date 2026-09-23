@@ -16,6 +16,7 @@ results in an easy-to-understand manner.
 - Location: Tangerang, Indonesia
 - Email: andrestwnn01@gmail.com
 - LinkedIn: https://www.linkedin.com/in/andre-setiawan-799771253/
+- GitHub: https://github.com/andresetwn
 - Portfolio: https://bit.ly/PortoDataAnalisisAndre
 
 ## Education
@@ -25,6 +26,10 @@ Information Systems
 2022 – 2026
 
 GPA: 3.87
+
+### SMAN 15 Kota Tangerang
+Social Science
+2019 – 2022
 
 ## Work Experience
 
@@ -206,6 +211,9 @@ Licensed by BNSP
 
 ## Training
 
+- Fundamental Web Programming - Lepkom Gunadarma
+- Go-Lang for Beginner - Lepkom Gunadarma
+- Go-Lang for Intermediate - Lepkom Gunadarma
 - Creating Business Intelligence - Gunadarma (2026)
 - Data Preparation for Business Processes - Gunadarma (2025)
 - Introduction to Data Analysis - MySkill (2023)

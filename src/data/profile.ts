@@ -7,15 +7,15 @@ export const profile = {
   name: "Andre Setiawan",
   firstName: "Andre",
   lastName: "Setiawan",
-  role: "Data Analyst & Data Enthusiast",
+  avatar: "/fotoformal_gacor.png",
+  role: "Data Analyst & Web Developer",
   location: "Tangerang, Indonesia",
   email: "andrestwnn01@gmail.com",
   linkedin: "https://www.linkedin.com/in/andre-setiawan-799771253/",
+  github: "https://github.com/andresetwn",
   portfolio: "https://bit.ly/PortoDataAnalisisAndre",
   summary:
     "I am a graduate of the Information Systems Program at Gunadarma University with a career focus as a Data Analyst. Skilled in data processing, analysis, and visualization using Python, Excel, Looker, Tableau, and Power BI. Experienced in processing data systematically and presenting analytical results in an easy-to-understand manner.",
-  shortPitch:
-    "Information Systems graduate focused on turning raw data into clear, actionable insights through systematic analysis and effective visualization.",
   stats: [
     { label: "GPA", value: "3.87" },
     { label: "Projects Built", value: "8" },
@@ -23,8 +23,21 @@ export const profile = {
   ],
 };
 
+/**
+ * Gmail compose URL used for contact links.
+ *
+ * Plain `mailto:` silently does nothing for visitors with no default mail
+ * client configured (common on fresh Windows installs and webmail-only
+ * users), which made the email links look broken. This always works.
+ */
+export const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+  profile.email,
+)}&su=${encodeURIComponent("Portfolio Inquiry — Andre Setiawan")}&body=${encodeURIComponent(
+  "Hi Andre,\n\nI came across your portfolio and would like to get in touch.\n\nBest regards,",
+)}`;
+
 export const socials = [
-  { label: "Email", href: `mailto:${profile.email}`, icon: "Mail" },
+  { label: "Email", href: gmailCompose, icon: "Mail" },
   { label: "LinkedIn", href: profile.linkedin, icon: "Linkedin" },
   { label: "Portfolio", href: profile.portfolio, icon: "Globe" },
 ];
@@ -33,13 +46,13 @@ export const about = {
   heading: "About Me",
   paragraphs: [
     "I am a graduate of the Information Systems Program at Gunadarma University with a career focus as a Data Analyst. I am skilled in data processing, analysis, and visualization using Python, Excel, Looker, Tableau, and Power BI.",
-    "I am experienced in processing data systematically and presenting analytical results in an easy-to-understand manner — bridging the gap between complex datasets and clear business decisions.",
+    "I also have experience working on web development projects, building responsive websites and web-based applications using technologies such as React, Next.js, Laravel, JavaScript, and Tailwind CSS.",
   ],
   highlights: [
-    "Data processing, analysis & visualization",
+    "Data Analysis & Visualization",
     "Python, Excel, Looker, Tableau, Power BI",
-    "Systematic, detail-oriented workflows",
-    "Clear, audience-friendly reporting",
+    "Web Development",
+    "React, Next.js, Laravel, JavaScript",
   ],
 };
 
@@ -67,7 +80,13 @@ export const skillCategories: SkillCategory[] = [
     title: "Data Visualization",
     icon: "BarChart3",
     accent: "from-blue-400 to-cyan-300",
-    skills: ["Microsoft Excel", "Google Sheets", "Looker", "Tableau", "Power BI"],
+    skills: [
+      "Microsoft Excel",
+      "Google Sheets",
+      "Looker",
+      "Tableau",
+      "Power BI",
+    ],
   },
   {
     title: "Web Development",
@@ -266,7 +285,11 @@ export const webProjects: Project[] = [
       "Task management",
       "Programmer standby schedules",
     ],
-    features: ["Programmer data", "Task management", "Programmer standby schedules"],
+    features: [
+      "Programmer data",
+      "Task management",
+      "Programmer standby schedules",
+    ],
     icon: "ClipboardList",
   },
   {
@@ -345,7 +368,9 @@ export type Education = {
   institution: string;
   program: string;
   period: string;
-  gpa: string;
+  gpa?: string;
+  location?: string;
+  icon: string;
 };
 
 export const education: Education = {
@@ -353,6 +378,15 @@ export const education: Education = {
   program: "Information Systems",
   period: "2022 – 2026",
   gpa: "3.87",
+  icon: "GraduationCap",
+};
+
+export const highSchool: Education = {
+  institution: "SMAN 15 Kota Tangerang",
+  program: "Social Science",
+  period: "2019 – 2022",
+  location: "Tangerang, Indonesia",
+  icon: "School",
 };
 
 export type Certification = {
@@ -378,9 +412,28 @@ export type Training = {
 };
 
 export const trainings: Training[] = [
-  { title: "Creating Business Intelligence", issuer: "Gunadarma", year: "2026" },
-  { title: "Data Preparation for Business Processes", issuer: "Gunadarma", year: "2025" },
   { title: "Introduction to Data Analysis", issuer: "MySkill", year: "2023" },
+  {
+    title: "Fundamental Web Programming",
+    issuer: "Lepkom Gunadarma",
+    year: "2023",
+  },
+  { title: "Go-Lang for Beginner", issuer: "Lepkom Gunadarma", year: "2024" },
+  {
+    title: "Go-Lang for Intermediate",
+    issuer: "Lepkom Gunadarma",
+    year: "2025",
+  },
+  {
+    title: "Data Preparation for Business Processes",
+    issuer: "Gunadarma",
+    year: "2025",
+  },
+  {
+    title: "Creating Business Intelligence",
+    issuer: "Gunadarma",
+    year: "2026",
+  },
 ];
 
 export const languages = ["Indonesian", "English"];

@@ -28,9 +28,8 @@ export function Skills() {
     <SectionWrapper id="skills">
       <SectionHeading
         eyebrow="Skills"
-        title="Tools I work"
-        highlight="with"
-        intro="A toolkit spanning the full data pipeline — from data processing and storage to visualization and delivery."
+        title="Skills & "
+        highlight="Technologies"
       />
 
       <motion.div

@@ -53,8 +53,8 @@ export function Projects() {
       <SectionHeading
         eyebrow="Projects"
         title="Selected"
-        highlight="work"
-        intro="A mix of data analysis projects and web applications — each built to solve a real problem end to end."
+        highlight="Projects"
+        intro="A mix of data analysis projects and web applications"
       />
 
       {/* Filters */}

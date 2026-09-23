@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUp, Mail, Linkedin, Globe } from "lucide-react";
-import { navLinks, profile } from "@/data/profile";
+import { ArrowUp, Mail, Linkedin, Github, Globe } from "lucide-react";
+import { navLinks, profile, gmailCompose } from "@/data/profile";
 
 export function Footer() {
   const [showTop, setShowTop] = useState(false);
@@ -17,8 +17,9 @@ export function Footer() {
   }, []);
 
   const socials = [
-    { label: "Email", href: `mailto:${profile.email}`, icon: Mail },
+    { label: "Email", href: gmailCompose, icon: Mail },
     { label: "LinkedIn", href: profile.linkedin, icon: Linkedin },
+    { label: "GitHub", href: profile.github, icon: Github },
     { label: "Portfolio", href: profile.portfolio, icon: Globe },
   ];
 
@@ -92,13 +93,10 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center gap-4 border-t border-blue-500/10 pt-6 sm:flex-row sm:justify-between">
+        <div className="mt-10 flex justify-center gap-4 border-t border-blue-500/10 pt-6">
           <p className="text-xs text-slate-600">
             &copy; {new Date().getFullYear()} {profile.name}. All rights
             reserved.
-          </p>
-          <p className="text-xs text-slate-600">
-            Built with Next.js, Tailwind CSS &amp; Framer Motion.
           </p>
         </div>
       </div>

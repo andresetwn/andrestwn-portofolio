@@ -100,7 +100,7 @@ export default function RootLayout({
       "Looker",
     ],
     url: baseUrl,
-    sameAs: [profile.linkedin, profile.portfolio],
+    sameAs: [profile.linkedin, profile.github, profile.portfolio],
   };
 
   return (

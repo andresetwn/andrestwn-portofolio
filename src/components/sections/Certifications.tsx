@@ -11,7 +11,6 @@ export function Certifications() {
         eyebrow="Certifications"
         title="Certifications &"
         highlight="Learning"
-        intro="Professional credentials and structured training that keep my analytical skills sharp."
       />
 
       <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -65,9 +64,11 @@ export function Certifications() {
                     <span className="font-medium text-slate-200">{t.title}</span>
                     <span className="text-xs text-slate-500">{t.issuer}</span>
                   </div>
-                  <span className="shrink-0 text-xs font-medium text-cyan-300/80">
-                    {t.year}
-                  </span>
+                  {t.year && (
+                    <span className="shrink-0 text-xs font-medium text-cyan-300/80">
+                      {t.year}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
