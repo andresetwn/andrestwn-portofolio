@@ -14,14 +14,14 @@ const baseUrl = "https://andre-setiawan.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: `${profile.name} — ${profile.role}`,
+    default: `${profile.name} Web Portfolio`,
     template: `%s — ${profile.name}`,
   },
   description: profile.summary,
   keywords: [
     profile.name,
     "Data Analyst",
-    "Data Enthusiast",
+    "Web Developer",
     "Data Analysis",
     "Data Visualization",
     "Python",
