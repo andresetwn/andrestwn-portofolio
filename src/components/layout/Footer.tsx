@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUp, Mail, Linkedin, Github, Globe } from "lucide-react";
-import { navLinks, profile, gmailCompose } from "@/data/profile";
+import { profile, gmailCompose } from "@/data/profile";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 export function Footer() {
   const [showTop, setShowTop] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLocale();
 
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 600);
@@ -44,8 +46,9 @@ export function Footer() {
               </span>
             </a>
             <p className="mt-4 text-sm leading-relaxed text-slate-500">
-              {profile.role} based in {profile.location}. Turning raw data into
-              clear, actionable insights.
+              {t.footer.blurb
+                .replace("{{role}}", profile.role)
+                .replace("{{location}}", profile.location)}
             </p>
 
             <ul className="mt-5 flex items-center gap-2">
@@ -75,19 +78,22 @@ export function Footer() {
           {/* Navigation */}
           <nav aria-label="Footer navigation">
             <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-              Navigation
+              {t.footer.navigation}
             </h2>
             <ul className="mt-4 grid grid-cols-2 gap-x-10 gap-y-2.5 sm:grid-cols-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-slate-400 transition-colors duration-200 hover:text-cyan-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {t.nav.items.map((link) => {
+                const href = `#${link.id}`;
+                return (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      className="text-sm text-slate-400 transition-colors duration-200 hover:text-cyan-300"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
@@ -95,8 +101,8 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 flex justify-center gap-4 border-t border-blue-500/10 pt-6">
           <p className="text-xs text-slate-600">
-            &copy; {new Date().getFullYear()} {profile.name}. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} {profile.name}.{" "}
+            {t.footer.rights}
           </p>
         </div>
       </div>

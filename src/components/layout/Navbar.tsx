@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
-import { navLinks, profile, gmailCompose } from "@/data/profile";
+import { profile, gmailCompose } from "@/data/profile";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { LanguageToggle } from "@/components/i18n/LanguageToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLocale();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -20,7 +23,7 @@ export function Navbar() {
 
   // Track the section currently in view to highlight nav items.
   useEffect(() => {
-    const ids = navLinks.map((l) => l.href.slice(1));
+    const ids = t.nav.items.map((l) => l.id);
     const elements = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -39,7 +42,7 @@ export function Navbar() {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [t.nav.items]);
 
   // Lock body scroll while the mobile drawer is open.
   useEffect(() => {
@@ -75,22 +78,20 @@ export function Navbar() {
           className="relative z-10 flex items-center gap-2.5 rounded-lg px-1 py-1"
           aria-label={`${profile.name} — home`}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 text-sm font-bold text-white shadow-lg shadow-blue-500/30">
-            AS
-          </span>
-          <span className="hidden text-sm font-semibold tracking-tight text-white sm:block">
-            {profile.name}
+          <span className="hidden text-lg font-semibold tracking-tight text-white sm:block">
+            andrestwn
           </span>
         </a>
 
         {/* Desktop nav */}
         <ul className="relative z-10 hidden items-center gap-0.5 lg:flex">
-          {navLinks.map((link) => {
-            const isActive = active === link.href;
+          {t.nav.items.map((link) => {
+            const href = `#${link.id}`;
+            const isActive = active === href;
             return (
-              <li key={link.href}>
+              <li key={href}>
                 <a
-                  href={link.href}
+                  href={href}
                   className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                     isActive ? "text-white" : "text-slate-400 hover:text-white"
                   }`}
@@ -109,11 +110,16 @@ export function Navbar() {
           })}
         </ul>
 
-        {/* CTA + mobile toggle */}
+        {/* CTA + language toggle + mobile toggle */}
         <div className="relative z-10 flex items-center gap-2">
-          <a href="#contact" className="hidden btn-primary !py-2 !px-4 sm:inline-flex">
+          <LanguageToggle />
+
+          <a
+            href="#contact"
+            className="hidden btn-primary !py-2 !px-4 sm:inline-flex"
+          >
             <Sparkles className="h-3.5 w-3.5" />
-            Let&rsquo;s talk
+            {t.nav.cta}
           </a>
 
           <button
@@ -164,31 +170,34 @@ export function Navbar() {
           >
             <div className="mx-4 overflow-hidden rounded-2xl border border-blue-500/15 bg-navy-900/95 shadow-2xl shadow-black/50 backdrop-blur-xl">
               <ul className="flex flex-col gap-1 p-3">
-                {navLinks.map((link, i) => (
-                  <motion.li
-                    key={link.href}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.04 * i, duration: 0.3 }}
-                  >
-                    <a
-                      href={link.href}
-                      onClick={close}
-                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors ${
-                        active === link.href
-                          ? "bg-blue-500/10 text-white"
-                          : "text-slate-300 hover:bg-white/[0.04] hover:text-white"
-                      }`}
+                {t.nav.items.map((link, i) => {
+                  const href = `#${link.id}`;
+                  return (
+                    <motion.li
+                      key={href}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.04 * i, duration: 0.3 }}
                     >
-                      {link.label}
-                    </a>
-                  </motion.li>
-                ))}
+                      <a
+                        href={href}
+                        onClick={close}
+                        className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                          active === href
+                            ? "bg-blue-500/10 text-white"
+                            : "text-slate-300 hover:bg-white/[0.04] hover:text-white"
+                        }`}
+                      >
+                        {link.label}
+                      </a>
+                    </motion.li>
+                  );
+                })}
               </ul>
               <div className="border-t border-blue-500/10 p-3">
                 <a href="#contact" onClick={close} className="btn-primary w-full">
                   <Sparkles className="h-4 w-4" />
-                  Let&rsquo;s talk
+                  {t.nav.cta}
                 </a>
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 pb-4 pt-1 text-xs text-slate-500">

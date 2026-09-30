@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { profile } from "@/data/profile";
+import { LocaleProvider } from "@/components/i18n/LocaleProvider";
+import { defaultLocale } from "@/lib/i18n";
 import "./globals.css";
 
 const inter = Inter({
@@ -37,10 +39,14 @@ export const metadata: Metadata = {
   publisher: profile.name,
   alternates: {
     canonical: baseUrl,
+    languages: {
+      "en-US": baseUrl,
+      "id-ID": baseUrl,
+    },
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: defaultLocale === "en" ? "en_US" : "id_ID",
     url: baseUrl,
     title: `${profile.name} — ${profile.role}`,
     description: profile.summary,
@@ -116,7 +122,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>
   );

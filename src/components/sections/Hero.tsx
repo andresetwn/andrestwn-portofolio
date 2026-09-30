@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { profile, gmailCompose } from "@/data/profile";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 import { fadeUp, staggerContainer, easeOut } from "@/lib/motion";
 
 const iconMap = { Mail, Linkedin, Github, Globe } as const;
@@ -30,6 +31,7 @@ const avatarIn: Variants = {
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLocale();
 
   return (
     <section
@@ -84,7 +86,7 @@ export function Hero() {
               <div className="relative h-36 w-36 overflow-hidden rounded-full border border-white/10 bg-navy-850 sm:h-44 sm:w-44">
                 <Image
                   src={profile.avatar}
-                  alt={`Portrait of ${profile.name}`}
+                  alt={t.hero.portraitAlt.replace("{{name}}", profile.name)}
                   width={176}
                   height={176}
                   priority
@@ -113,8 +115,8 @@ export function Hero() {
             variants={fadeUp}
             className="mt-5 text-lg font-semibold text-slate-300 sm:text-xl lg:text-2xl"
           >
-            Data Analyst &amp;{" "}
-            <span className="text-gradient-accent">Website Developer</span>
+            {t.hero.rolePrefix}{" "}
+            <span className="text-gradient-accent">{t.hero.roleHighlight}</span>
           </motion.p>
 
           {/* Location */}
@@ -132,12 +134,12 @@ export function Hero() {
             className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
           >
             <a href="#projects" className="btn-primary group w-full sm:w-auto">
-              View My Work
+              {t.hero.viewWork}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a href="#contact" className="btn-ghost w-full sm:w-auto">
               <Mail className="h-4 w-4" />
-              Get In Touch
+              {t.hero.getInTouch}
             </a>
           </motion.div>
 
@@ -173,13 +175,15 @@ export function Hero() {
             className="mt-14 grid w-full max-w-lg grid-cols-3 divide-x divide-blue-500/10 rounded-2xl border border-blue-500/10 bg-navy-850/40 px-2 py-5 backdrop-blur-sm"
           >
             {profile.stats.map((stat) => (
-              <div key={stat.label} className="px-2 text-center">
-                <dt className="sr-only">{stat.label}</dt>
+              <div key={stat.labelKey} className="px-2 text-center">
+                <dt className="sr-only">
+                  {t.hero.stats[stat.labelKey]}
+                </dt>
                 <dd className="text-2xl font-bold text-white sm:text-3xl">
                   {stat.value}
                 </dd>
                 <p className="mt-1 text-xs font-medium uppercase tracking-wider text-slate-500">
-                  {stat.label}
+                  {t.hero.stats[stat.labelKey]}
                 </p>
               </div>
             ))}
@@ -194,7 +198,9 @@ export function Hero() {
           className="mt-16 flex flex-col items-center gap-2 text-slate-600"
           aria-hidden="true"
         >
-          <span className="text-xs uppercase tracking-[0.25em]">Scroll</span>
+          <span className="text-xs uppercase tracking-[0.25em]">
+            {t.hero.scroll}
+          </span>
           <motion.div
             animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

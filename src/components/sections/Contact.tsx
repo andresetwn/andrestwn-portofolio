@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sparkles,
   ArrowRight,
@@ -11,29 +13,32 @@ import { profile, gmailCompose } from "@/data/profile";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Reveal } from "@/components/motion/MotionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 export function Contact() {
+  const { t } = useLocale();
+
   const links = [
     {
-      label: "Email",
+      label: t.contact.links.email,
       value: profile.email,
       href: gmailCompose,
       icon: Mail,
     },
     {
-      label: "LinkedIn",
+      label: t.contact.links.linkedin,
       value: "Andre Setiawan",
       href: profile.linkedin,
       icon: Linkedin,
     },
     {
-      label: "GitHub",
+      label: t.contact.links.github,
       value: "andresetwn",
       href: profile.github,
       icon: Github,
     },
     {
-      label: "Portfolio",
+      label: t.contact.links.portfolio,
       value: "PortoDataAnalisisAndre",
       href: profile.portfolio,
       icon: Globe,
@@ -43,10 +48,10 @@ export function Contact() {
   return (
     <SectionWrapper id="contact">
       <SectionHeading
-        eyebrow="Contact"
-        title="Let's Work"
-        highlight="Together"
-        intro="Have a dataset that needs making sense of, or a project you'd like to collaborate on? I'd be glad to hear from you."
+        eyebrow={t.contact.eyebrow}
+        title={t.contact.title}
+        highlight={t.contact.highlight}
+        intro={t.contact.intro}
       />
 
       <Reveal delay={0.1} className="mx-auto mt-12 max-w-3xl">
@@ -57,13 +62,8 @@ export function Contact() {
             </div>
 
             <h3 className="text-xl font-semibold text-white sm:text-2xl">
-              Open to Data Analyst opportunities
+              {t.contact.heading}
             </h3>
-
-            <p className="max-w-lg text-sm leading-relaxed text-slate-400 sm:text-base">
-              Whether it&rsquo;s data analysis, visualization, or a web project
-              — feel free to reach out through any of the channels below.
-            </p>
 
             <a
               href={gmailCompose}

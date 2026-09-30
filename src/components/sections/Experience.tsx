@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Code2,
   GraduationCap,
@@ -9,6 +11,7 @@ import { experiences } from "@/data/profile";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/MotionWrapper";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 const iconMap: Record<string, LucideIcon> = {
   Code2,
@@ -17,12 +20,14 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export function Experience() {
+  const { t } = useLocale();
+
   return (
     <SectionWrapper id="experience">
       <SectionHeading
-        eyebrow="Experience"
-        title="My"
-        highlight="Experience"
+        eyebrow={t.experience.eyebrow}
+        title={t.experience.title}
+        highlight={t.experience.highlight}
       />
 
       <div className="mx-auto mt-12 max-w-3xl">
@@ -36,6 +41,7 @@ export function Experience() {
           <ol className="flex flex-col gap-8">
             {experiences.map((exp, i) => {
               const Icon = iconMap[exp.icon] ?? Briefcase;
+              const copy = t.experience.items[exp.i18nKey];
               return (
                 <Reveal key={`${exp.organization}-${i}`} delay={i * 0.1}>
                   <li className="relative pl-16 sm:pl-20">
@@ -48,26 +54,26 @@ export function Experience() {
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex flex-col gap-0.5">
                           <h3 className="text-base font-semibold text-white sm:text-lg">
-                            {exp.role}
+                            {copy.role}
                           </h3>
                           <p className="text-sm font-medium text-cyan-300">
-                            {exp.organization}
+                            {copy.organization}
                           </p>
                         </div>
 
                         <div className="flex flex-col gap-1 sm:items-end">
                           <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-blue-400/20 bg-blue-500/10 px-2.5 py-0.5 text-xs font-medium text-blue-200">
                             <Briefcase className="h-3 w-3" />
-                            {exp.type}
+                            {t.experience.types[exp.type]}
                           </span>
                           <span className="text-xs text-slate-500">
-                            {exp.period}
+                            {copy.period}
                           </span>
                         </div>
                       </div>
 
                       <ul className="mt-4 flex flex-col gap-2.5">
-                        {exp.points.map((point, pi) => (
+                        {copy.points.map((point, pi) => (
                           <li
                             key={pi}
                             className="flex items-start gap-3 text-sm leading-relaxed text-slate-400"

@@ -7,11 +7,13 @@ import {
   BarChart3,
   Globe,
   Users,
+  GitBranch,
   type LucideIcon,
 } from "lucide-react";
 import { skillCategories } from "@/data/profile";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 import { Reveal } from "@/components/motion/MotionWrapper";
 import { fadeUp, staggerContainer, staggerFast, viewportOnce } from "@/lib/motion";
 
@@ -21,15 +23,18 @@ const iconMap: Record<string, LucideIcon> = {
   BarChart3,
   Globe,
   Users,
+  GitBranch,
 };
 
 export function Skills() {
+  const { t } = useLocale();
+
   return (
     <SectionWrapper id="skills">
       <SectionHeading
-        eyebrow="Skills"
-        title="Skills & "
-        highlight="Technologies"
+        eyebrow={t.skills.eyebrow}
+        title={t.skills.title}
+        highlight={t.skills.highlight}
       />
 
       <motion.div
@@ -56,7 +61,7 @@ export function Skills() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="text-base font-semibold text-white">
-                  {category.title}
+                  {t.skills.categories[category.i18nKey]}
                 </h3>
               </div>
 
