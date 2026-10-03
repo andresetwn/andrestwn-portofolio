@@ -26,6 +26,7 @@ export type LocaleContent = {
     roleHighlight: string;
     viewWork: string;
     getInTouch: string;
+    downloadCV: string;
     scroll: string;
     /** `{{name}}` is replaced with the person's name. */
     portraitAlt: string;
@@ -184,6 +185,7 @@ export const content: Record<Locale, LocaleContent> = {
       roleHighlight: "Website Developer",
       viewWork: "View My Work",
       getInTouch: "Get In Touch",
+      downloadCV: "Download CV",
       scroll: "Scroll",
       portraitAlt: "Portrait of {{name}}",
       stats: {
@@ -613,6 +615,7 @@ export const content: Record<Locale, LocaleContent> = {
       roleHighlight: "Pengembang Website",
       viewWork: "Lihat Karya Saya",
       getInTouch: "Hubungi Saya",
+      downloadCV: "Unduh CV",
       scroll: "Gulir",
       portraitAlt: "Foto {{name}}",
       stats: {

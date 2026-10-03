@@ -10,6 +10,7 @@ import {
   Sparkles,
   MapPin,
   ChevronDown,
+  Download,
 } from "lucide-react";
 import Image from "next/image";
 import { profile, gmailCompose } from "@/data/profile";
@@ -46,7 +47,6 @@ export function Hero() {
           animate="visible"
           className="mx-auto flex max-w-4xl flex-col items-center text-center"
         >
-
           {/* Circular photo frame */}
           <motion.div variants={avatarIn} className="group relative mt-2 mb-8">
             {/* Outer pulsing glow */}
@@ -141,6 +141,14 @@ export function Hero() {
               <Mail className="h-4 w-4" />
               {t.hero.getInTouch}
             </a>
+            <a
+              href="/CV Andre Setiawan.pdf"
+              download
+              className="btn-secondary w-full sm:w-auto"
+            >
+              <Download className="h-4 w-4" />
+              {t.hero.downloadCV}
+            </a>
           </motion.div>
 
           {/* Social links */}
@@ -176,9 +184,7 @@ export function Hero() {
           >
             {profile.stats.map((stat) => (
               <div key={stat.labelKey} className="px-2 text-center">
-                <dt className="sr-only">
-                  {t.hero.stats[stat.labelKey]}
-                </dt>
+                <dt className="sr-only">{t.hero.stats[stat.labelKey]}</dt>
                 <dd className="text-2xl font-bold text-white sm:text-3xl">
                   {stat.value}
                 </dd>
